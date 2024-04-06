@@ -2,10 +2,15 @@
 
 int main(int ac, char **av)
 {
+	FILE *file;
+	char *buffer;
+	size_t n, eof, neg;
+
+	n = 1024, neg = -1;
 	/*arg check*/
 	if (ac < 2)
 	{
-		fprintf("USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -13,16 +18,18 @@ int main(int ac, char **av)
 	file = fopen(av[1], "r");
 	if (file == NULL)
 	{
-		fprintf("Error: Can't open file %s\n", av[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
 
 	/*main loop*/
-	while(/*getline != -1*/)
+	while((eof = getline(&buffer, &n, file)) != neg)
 	{
-		/*do instructions*/
+		printf("%s, %ld\n", buffer, eof);
+		/*do instruction*/
 	}
 	/*close file & exit*/
-	fclose(file)
+	free(buffer);
+	fclose(file);
 	return(0);
 }
