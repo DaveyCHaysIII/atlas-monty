@@ -4,9 +4,11 @@ int main(int ac, char **av)
 {
 	FILE *file;
 	char *buffer;
-	size_t n, eof, neg;
+	size_t n;  
+	ssize_t neg;
 
 	n = 1024, neg = -1;
+	buffer = NULL;
 	/*arg check*/
 	if (ac < 2)
 	{
@@ -23,9 +25,10 @@ int main(int ac, char **av)
 	}
 
 	/*main loop*/
-	while((eof = getline(&buffer, &n, file)) != neg)
+	while((getline(&buffer, &n, file)) != neg)
 	{
-		printf("%s, %ld\n", buffer, eof);
+		san_buffer(buffer);
+		printf("%s\n", buffer);
 		/*do instruction*/
 	}
 	/*close file & exit*/
