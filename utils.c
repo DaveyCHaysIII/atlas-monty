@@ -55,26 +55,3 @@ void print_tokens(char **tokens)
 	}		
 }
 
-int is_opcode(const char *token)
-{
-	if (token != NULL)
-	{
-		if (strstr(token, "pall") != NULL)
-			return 0;
-		else if (strstr(token, "push") != NULL)
-			return 1;
-		else if (strstr(token, "pint") != NULL)
-			return 2;
-		else if (strstr(token, "pop") != NULL)
-			return 3;
-		else if (strstr(token, "swap") != NULL)
-			return 4;
-		else if (strstr(token, "add") != NULL)
-			return 5;
-		else if (strstr(token, "nop") != NULL)
-			return 6;
-		else
-			return -1;
-	}
-	return -1;
-}

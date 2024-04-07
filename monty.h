@@ -35,7 +35,7 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+        void (*f)(stack_t **stack, char **args, unsigned int line_number);
 } instruction_t;
 
 void san_buffer(char *buffer);
@@ -43,7 +43,6 @@ void clean_buffer(char *buffer);
 void tokenize(char **tokens, char *buffer);
 void free_tokens(char **tokens);
 void print_tokens(char **tokens);
-void (*getopfunc(char *s))(stack_t **stack, unsigned int line_number);
-void push_number(stack_t **stack, int numb);
+void (*getopfunc(char *s))(stack_t **stack, char **args, unsigned int line_number);
 
 #endif

@@ -9,9 +9,8 @@ int main(int ac, char **av)
 	char **tokens;
 	size_t n, linenum;
 	ssize_t neg;
-	stack_t **stack;
 
-	stack = NULL;
+	stack_t *stack = NULL;
 	n = 0, neg = -1, linenum = 1, buffer = NULL;
 	tokens = malloc(sizeof(char*) * 100);
 	/*arg check*/
@@ -31,12 +30,7 @@ int main(int ac, char **av)
 	while((getline(&buffer, &n, file)) != neg)
 	{
 		tokenize(tokens, buffer);
-		print_tokens(tokens);
-		/*validate operation*/
-		getopfunc(tokens[0])(stack, linenum);
-		/*if(strcmp(tokens[0], "push") == 0)
-		 * pushnum(atoi(tokens[1])
-		 */
+		getopfunc(tokens[0])(&stack, tokens, linenum);
 		free_tokens(tokens);
 		linenum++;
 	}
@@ -44,6 +38,7 @@ int main(int ac, char **av)
 	free(buffer);
 	free_tokens(tokens);
 	free(tokens);
+	free(stack);
 	fclose(file);
 	return(0);
 }
