@@ -1,10 +1,9 @@
 #include "monty.h"
 
-int is_opcode(char *token);
+FILE *fd = NULL;
 
 int main(int ac, char **av)
 {
-	FILE *file;
 	char *buffer;
 	char **tokens;
 	size_t n, linenum;
@@ -20,14 +19,14 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	/*open the file*/
-	file = fopen(av[1], "r");
-	if (file == NULL)
+	fd = fopen(av[1], "r");
+	if (fd == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
 	/*main loop*/
-	while((getline(&buffer, &n, file)) != neg)
+	while((getline(&buffer, &n, fd)) != neg)
 	{
 		tokenize(tokens, buffer);
 		getopfunc(tokens[0])(&stack, tokens, linenum);
@@ -39,7 +38,7 @@ int main(int ac, char **av)
 	free_tokens(tokens);
 	free(tokens);
 	free_stack(&stack);
-	fclose(file);
+	fclose(fd);
 	return(0);
 }
 

@@ -1,8 +1,5 @@
 #include "monty.h"
 
-void push(stack_t **stack, char **args, unsigned int l);
-void pall(stack_t **stack, char **args, unsigned int l);
-
 /**
  * getopfunc()- gets a pointer to the operation!
  * @s: the op to compare to!
@@ -18,8 +15,8 @@ void (*getopfunc(char *s))(stack_t **stack, char **args, unsigned int l)
 
 		{"push", push},
 		{"pall", pall},
-		/*{"pint", pint},
-		{"pop", pop},
+		{"pint", pint},
+		/*{"pop", pop},
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},*/
@@ -45,6 +42,8 @@ void push(stack_t **stack, char **args, unsigned int l)
 	if (!args[1])
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", l);
+		free_stack(stack);
+		fclose(fd);
 		exit(EXIT_FAILURE);
 	}
 	if (new_node == NULL)
@@ -57,7 +56,6 @@ void push(stack_t **stack, char **args, unsigned int l)
 		tmp->prev = new_node;
 	}
 	new_node->n = atoi(args[1]);
-	printf("%d\n", new_node->n);
 	new_node->next = *stack;
 	new_node->prev = NULL;
 	*stack = new_node;
