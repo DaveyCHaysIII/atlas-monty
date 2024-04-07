@@ -1,5 +1,8 @@
 #include "monty.h"
 
+void push(stack_t **stack, unsigned int l);
+void pall(stack_t **stack, unsigned int l);
+
 /**
  * getopfunc()- gets a pointer to the operation!
  * @s: the op to compare to!
@@ -11,7 +14,7 @@ void (*getopfunc(char *s))(stack_t **stack, unsigned int l)
 {
 	int i;
 
-	intstruct_t ops[] = {
+	instruction_t ops[] = {
 
 		{"push", push},
 		{"pall", pall},
@@ -20,16 +23,29 @@ void (*getopfunc(char *s))(stack_t **stack, unsigned int l)
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},*/
-		{NULL, NULL};
+		{NULL, NULL}
 	};
 
 	i = 0;
-	while (ops[i] != NULL)
+	while (ops[i].opcode != NULL)
 	{
-		if (strcmp(*s, ops[i].instrcut_s[0]) == 0)
+		if (strcmp(s, ops[i].opcode) == 0)
 			return (ops[i].f);
 		i++;	
 	}
-	fprintf(stderr, "Op %s not found at line %ld", s, l);  
+	fprintf(stderr, "Op %s not found at line ", s);  
 	return (NULL);
+}
+
+void push(stack_t **stack, unsigned int l)
+{
+	(void)stack;
+	printf("called push for line number %u\n", l);
+}
+
+void pall(stack_t **stack, unsigned int l)
+{
+	(void)stack;
+ 	printf("called push for line number %u\n", l);
+
 }
