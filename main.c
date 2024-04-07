@@ -9,6 +9,7 @@ int main(int ac, char **av)
 	char **tokens;
 	size_t n, linenum;
 	ssize_t neg;
+	stack_t *stack = NULL;
 
 	n = 0, neg = -1, linenum = 1, buffer = NULL;
 	tokens = malloc(sizeof(char*) * 100);
@@ -30,7 +31,11 @@ int main(int ac, char **av)
 	{
 		tokenize(tokens, buffer);
 		print_tokens(tokens);
-		/*do the function pointer call*/
+		/*validate operation*/
+		/*getopfunc(tokens[0])(stack, linenum);*/
+		/*if(strcmp(tokens[0], "push") == 0)
+		 * pushnum(atoi(tokens[1])
+		 */
 		free_tokens(tokens);
 		linenum++;
 	}

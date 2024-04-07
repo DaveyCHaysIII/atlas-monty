@@ -43,5 +43,7 @@ void clean_buffer(char *buffer);
 void tokenize(char **tokens, char *buffer);
 void free_tokens(char **tokens);
 void print_tokens(char **tokens);
+void (*getopfunc(char *s))(stack_t **stack, unsigned int line_number);
+void push_number(stack_t **stack, int numb);
 
 #endif
