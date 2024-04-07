@@ -40,5 +40,8 @@ typedef struct instruction_s
 
 void san_buffer(char *buffer);
 void clean_buffer(char *buffer);
+void tokenize(char **tokens, char *buffer);
+void free_tokens(char **tokens);
+void print_tokens(char **tokens);
 
 #endif

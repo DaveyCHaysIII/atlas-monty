@@ -9,33 +9,15 @@
 
 void san_buffer(char *buff)
 {
-	int i, j;
+	int i;
 
 	i = 0;
-	j = 0;
-
 	while (buff[i] != '\0')
 	{
-		if (isspace(buff[i]))
-		{
-			if (buff[i] == '\n' || buff[i] == '$')
-			{
-				buff[i] = '\0';
-			}
-			i++;
-			continue;
-		}
-		else if (isspace(buff[j]))
-		{
-			if (isdigit(buff[i + 1]))
-			{
-				buff[j] = ' ';
-				j++;
-			}
-			buff[j] = buff[i];
+		if (buff[i] == '\n')
 			buff[i] = '\0';
-			j++;
-		}
+		if (buff[i] == '$')
+			buff[i] = '\0';
 		i++;
 	}
 }
@@ -59,4 +41,40 @@ void clean_buffer(char *buffer)
 			buffer[i] = '\0';
 		}
 	}
+}
+
+void print_tokens(char **tokens)
+{
+	int i;
+
+	i = 0;
+	while (tokens[i] != NULL)
+	{
+		printf("%s\n", tokens[i]);
+		i++;
+	}		
+}
+
+int is_opcode(const char *token)
+{
+	if (token != NULL)
+	{
+		if (strstr(token, "pall") != NULL)
+			return 0;
+		else if (strstr(token, "push") != NULL)
+			return 1;
+		else if (strstr(token, "pint") != NULL)
+			return 2;
+		else if (strstr(token, "pop") != NULL)
+			return 3;
+		else if (strstr(token, "swap") != NULL)
+			return 4;
+		else if (strstr(token, "add") != NULL)
+			return 5;
+		else if (strstr(token, "nop") != NULL)
+			return 6;
+		else
+			return -1;
+	}
+	return -1;
 }
