@@ -53,6 +53,7 @@ void push(stack_t **stack, char **args, unsigned int l)
 	}
 	if (*stack)
 	{
+		printf("Stack is NOT null");
 		tmp = *stack;
 		tmp->prev = new_node;
 	}
@@ -66,27 +67,15 @@ void push(stack_t **stack, char **args, unsigned int l)
 void pall(stack_t **stack, char **args, unsigned int l)
 {
 	size_t  nodecount;
-	stack_t *current = *stack;
 
 	(void)args;
 	(void)l;
+	stack_t *current = *stack;
 	nodecount = 0;
 	while (current != NULL)
 	{
 		printf("%d\n",current->n);
 		current = current->next;
 		nodecount++;
-	}
-}
-
-void free_stack(stack_t **stack)
-{
-	stack_t *current = *stack;
-	
-	while (current != NULL)
-	{
-		stack_t *next = current->next;
-		free(current);
-		current = next;
 	}
 }

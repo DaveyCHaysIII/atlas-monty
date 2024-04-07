@@ -38,7 +38,7 @@ int main(int ac, char **av)
 	free(buffer);
 	free_tokens(tokens);
 	free(tokens);
-	free(stack);
+	free_stack(&stack);
 	fclose(file);
 	return(0);
 }
