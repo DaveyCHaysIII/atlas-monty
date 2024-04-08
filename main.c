@@ -37,6 +37,10 @@ int main(int ac, char **av)
 	/*main loop*/
 	while ((getline(&buffer, &n, fd)) != neg)
 	{
+		if(empty(buffer) < 0)
+		{
+			continue;
+		}
 		tokenize(tokens, buffer);
 		getopfunc(&stack, tokens, linenum)(&stack, tokens, linenum);
 		free_tokens(tokens);
@@ -68,7 +72,7 @@ void tokenize(char **tokens, char *buffer)
 	int i;
 
 	san_buffer(buffer);
-	token = strtok(buffer, " \t\n");
+	token = strtok(buffer, " \t\n$");
 	i = 0;
 	while (token != NULL)
 	{
@@ -104,4 +108,20 @@ void free_tokens(char **tokens)
 		tokens[i] = NULL;
 		i++;
 	}
+}
+
+int empty(char *buffer)
+{
+	int i;
+
+	i = 0;
+	while (buffer[i] != '\0')
+	{
+		if (isalnum(buffer[i]))
+		{
+			return (1);
+		}
+		i++;
+	}
+	return (-1);
 }

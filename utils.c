@@ -16,8 +16,6 @@ void san_buffer(char *buff)
 	{
 		if (buff[i] == '\n')
 			buff[i] = '\0';
-		if (buff[i] == '$')
-			buff[i] = '\0';
 		i++;
 	}
 }

@@ -39,6 +39,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, char **args, unsigned int line_number);
 } instruction_t;
 
+int empty(char *buffer);
 void san_buffer(char *buffer);
 void clean_buffer(char *buffer);
 void tokenize(char **tokens, char *buffer);
@@ -53,5 +54,6 @@ void swap(stack_t **stack, char **args, unsigned int line_number);
 void add(stack_t **stack, char **args, unsigned int line_number);
 void nop(stack_t **stack, char **args, unsigned int line_number);
 void free_stack(stack_t **stack);
+
 
 #endif
