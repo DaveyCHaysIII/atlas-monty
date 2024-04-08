@@ -52,7 +52,7 @@ void tokenize(char **tokens, char *buffer)
 	int i;
 
 	san_buffer(buffer);
-	token = strtok(buffer, " ");
+	token = strtok(buffer, " \t\n");
 	i = 0;
 	while (token != NULL)
 	{
