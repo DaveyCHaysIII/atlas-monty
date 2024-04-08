@@ -17,8 +17,8 @@ void (*getopfunc(stack_t **stack, char **args, unsigned int l))(stack_t **stack,
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
-		/*{"swap", swap},
-		{"add", add},*/
+		{"swap", swap},
+		{"add", add},
 		{"nop", nop},
 		{NULL, NULL}
 	};
