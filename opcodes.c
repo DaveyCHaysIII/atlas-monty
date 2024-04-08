@@ -35,3 +35,10 @@ void pop(stack_t **stack, char **arg, unsigned int l)
 	*stack = current->next;;
 	free(current);
 }
+
+void nop(stack_t **stack, char **arg, unsigned int l)
+{
+	(void)stack;
+	(void)arg;
+	(void)l;
+}
