@@ -29,7 +29,7 @@ int main(int ac, char **av)
 	while((getline(&buffer, &n, fd)) != neg)
 	{
 		tokenize(tokens, buffer);
-		getopfunc(tokens[0])(&stack, tokens, linenum);
+		getopfunc(&stack, tokens, linenum)(&stack, tokens, linenum);
 		free_tokens(tokens);
 		linenum++;
 	}

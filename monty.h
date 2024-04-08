@@ -44,7 +44,7 @@ void clean_buffer(char *buffer);
 void tokenize(char **tokens, char *buffer);
 void free_tokens(char **tokens);
 void print_tokens(char **tokens);
-void (*getopfunc(char *s))(stack_t **stack, char **args, unsigned int line_number);
+void (*getopfunc(stack_t **stack, char **args, unsigned int line_number))(stack_t **stack, char **args, unsigned int line_number);
 void push(stack_t **stack, char **args, unsigned int line_number);
 void pall(stack_t **stack, char **args, unsigned int line_number);
 void pint(stack_t **stack, char **args, unsigned int line_number);

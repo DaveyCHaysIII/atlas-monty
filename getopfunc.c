@@ -7,7 +7,7 @@
  * @l: the line count!
  */
 
-void (*getopfunc(char *s))(stack_t **stack, char **args, unsigned int l)
+void (*getopfunc(stack_t **stack, char **args, unsigned int l))(stack_t **stack, char **args, unsigned int l)
 {
 	int i;
 
@@ -16,8 +16,8 @@ void (*getopfunc(char *s))(stack_t **stack, char **args, unsigned int l)
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
-		/*{"pop", pop},
-		{"swap", swap},
+		{"pop", pop},
+		/*{"swap", swap},
 		{"add", add},
 		{"nop", nop},*/
 		{NULL, NULL}
@@ -26,11 +26,14 @@ void (*getopfunc(char *s))(stack_t **stack, char **args, unsigned int l)
 	i = 0;
 	while (ops[i].opcode != NULL)
 	{
-		if (strcmp(s, ops[i].opcode) == 0)
+		if (strcmp(args[0], ops[i].opcode) == 0)
 			return (ops[i].f);
 		i++;	
 	}
-	fprintf(stderr, "Op %s not found at line ", s);  
+	fprintf(stderr, "Op %s not found at line %u\n", args[0], l);
+	free_stack(stack);
+	free_tokens(args);
+	fclose(fd);
 	return (NULL);
 }
 
@@ -43,6 +46,7 @@ void push(stack_t **stack, char **args, unsigned int l)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", l);
 		free_stack(stack);
+		free_tokens(args);
 		fclose(fd);
 		exit(EXIT_FAILURE);
 	}
