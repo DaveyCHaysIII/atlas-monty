@@ -39,6 +39,7 @@ int main(int ac, char **av)
 	{
 		if(empty(buffer) < 0)
 		{
+			linenum++;
 			continue;
 		}
 		tokenize(tokens, buffer);
