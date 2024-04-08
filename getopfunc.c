@@ -30,10 +30,8 @@ void (*getopfunc(stack_t **stack, char **args, unsigned int l))(stack_t **stack,
 			return (ops[i].f);
 		i++;	
 	}
+	(void)stack;
 	fprintf(stderr, "Op %s not found at line %u\n", args[0], l);
-	free_stack(stack);
-	free_tokens(args);
-	fclose(fd);
 	return (NULL);
 }
 
