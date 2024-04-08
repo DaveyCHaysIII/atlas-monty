@@ -30,9 +30,12 @@ void (*getopfunc(stack_t **stack, char **args, unsigned int l))(stack_t **stack,
 			return (ops[i].f);
 		i++;	
 	}
-	(void)stack;
 	fprintf(stderr, "Op %s not found at line %u\n", args[0], l);
-	return (NULL);
+	free_stack(stack);
+	free_tokens(args);
+	free(args);
+	fclose(fd);
+	exit(EXIT_FAILURE);
 }
 
 void push(stack_t **stack, char **args, unsigned int l)
@@ -45,6 +48,7 @@ void push(stack_t **stack, char **args, unsigned int l)
 		fprintf(stderr, "L%u: usage: push integer\n", l);
 		free_stack(stack);
 		free_tokens(args);
+		free(args);
 		fclose(fd);
 		exit(EXIT_FAILURE);
 	}
@@ -90,3 +94,4 @@ void free_stack(stack_t **stack)
 		current = next;
 	}
 }
+

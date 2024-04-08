@@ -8,9 +8,10 @@ int main(int ac, char **av)
 	char **tokens;
 	size_t n, linenum;
 	ssize_t neg;
+	int status;
 
 	stack_t *stack = NULL;
-	n = 0, neg = -1, linenum = 1, buffer = NULL;
+	n = 0, status = 0; neg = -1, linenum = 1, buffer = NULL;
 	tokens = malloc(sizeof(char*) * 100);
 	/*arg check*/
 	if (ac < 2)
@@ -35,10 +36,13 @@ int main(int ac, char **av)
 	}
 	/*close file & exit*/
 	free(buffer);
-	free_tokens(tokens);
 	free(tokens);
 	free_stack(&stack);
 	fclose(fd);
+	if(status < 0)
+	{
+		exit(EXIT_FAILURE);
+	}
 	return(0);
 }
 
