@@ -48,9 +48,12 @@ void pop(stack_t **stack, char **arg, unsigned int l)
 
 	(void)arg;
 	current = *stack;
-	tmp = current->next;
-	tmp->prev = NULL;
-	*stack = current->next;;
+	if (current->next != NULL)
+	{	
+		tmp = current->next;
+		tmp->prev = NULL;
+		*stack = current->next;
+	}
 	free(current);
 }
 
