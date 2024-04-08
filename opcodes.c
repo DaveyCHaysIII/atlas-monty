@@ -1,5 +1,14 @@
 #include "monty.h"
 
+/**
+ * pint()- prints top of  stack
+ * @stack: the stack
+ * @args: the arg array
+ * @l: the line number
+ *
+ * Return: no return
+ */
+
 void pint(stack_t **stack, char **arg, unsigned int l)
 {
 	(void)arg;
@@ -14,6 +23,15 @@ void pint(stack_t **stack, char **arg, unsigned int l)
 
 	printf("%d\n", (*stack)->n);
 }
+
+/**
+ * pop()- pops a node from stack
+ * @stack: the stack
+ * @args: the arg array
+ * @l: the line number
+ *
+ * Return: no return
+ */
 
 void pop(stack_t **stack, char **arg, unsigned int l)
 {
@@ -35,6 +53,15 @@ void pop(stack_t **stack, char **arg, unsigned int l)
 	*stack = current->next;;
 	free(current);
 }
+
+/**
+ * swap()- swaps top two nodes of stack
+ * @stack: the stack
+ * @args: the arg array
+ * @l: the line number
+ *
+ * Return: no return
+ */
 
 void swap(stack_t **stack, char **arg, unsigned int l)
 {
@@ -62,6 +89,16 @@ void swap(stack_t **stack, char **arg, unsigned int l)
 	(current->next)->n = temp;
 
 }
+
+/**
+ * add()- adds value of top two nodes n deletes top
+ * @stack: the stack
+ * @args: the arg array
+ * @l: the line number
+ *
+ * Return: no return
+ */
+
 
 void add(stack_t **stack, char **arg, unsigned int l)
 {
@@ -92,6 +129,15 @@ void add(stack_t **stack, char **arg, unsigned int l)
 	(*stack) = tmp;
 	free(current);
 }
+
+/**
+ * nop()- does nothing!
+ * @stack: the stack
+ * @args: the arg array
+ * @l: the line number
+ *
+ * Return: no return
+ */
 
 void nop(stack_t **stack, char **arg, unsigned int l)
 {

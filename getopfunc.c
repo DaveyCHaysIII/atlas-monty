@@ -37,7 +37,14 @@ void (*getopfunc(stack_t **stack, char **args, unsigned int l))(stack_t **stack,
 	fclose(fd);
 	exit(EXIT_FAILURE);
 }
-
+/**
+ * push()- pushes a new node to stack
+ * @stack: the stack
+ * @args: the arg array
+ * @l: the line number
+ *
+ * Return: no return
+ */
 void push(stack_t **stack, char **args, unsigned int l)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
@@ -67,6 +74,15 @@ void push(stack_t **stack, char **args, unsigned int l)
 	*stack = new_node;
 }
 
+/**
+ * pall()- prints stack
+ * @stack: the stack
+ * @args: the arg array
+ * @l: the line number
+ *
+ * Return: no return
+ */
+
 void pall(stack_t **stack, char **args, unsigned int l)
 {
 	size_t  nodecount;
@@ -82,6 +98,13 @@ void pall(stack_t **stack, char **args, unsigned int l)
 		nodecount++;
 	}
 }
+
+/**
+ * free_stack()- frees a stack
+ * @stack: the stack
+ *
+ * Return: no return
+ */
 
 void free_stack(stack_t **stack)
 {

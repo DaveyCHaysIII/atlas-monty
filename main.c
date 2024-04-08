@@ -2,6 +2,14 @@
 
 FILE *fd = NULL;
 
+/**
+ * main()- the entry to the file!
+ * @ac: number of args passed
+ * @av: argument vector
+ *
+ * Return: 0 on success
+ */
+
 int main(int ac, char **av)
 {
 	char *buffer;
@@ -9,10 +17,10 @@ int main(int ac, char **av)
 	size_t n, linenum;
 	ssize_t neg;
 	int status;
-
 	stack_t *stack = NULL;
+
 	n = 0, status = 0; neg = -1, linenum = 1, buffer = NULL;
-	tokens = malloc(sizeof(char*) * 100);
+	tokens = malloc(sizeof(char *) * 100);
 	/*arg check*/
 	if (ac < 2)
 	{
@@ -27,7 +35,7 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	/*main loop*/
-	while((getline(&buffer, &n, fd)) != neg)
+	while ((getline(&buffer, &n, fd)) != neg)
 	{
 		tokenize(tokens, buffer);
 		getopfunc(&stack, tokens, linenum)(&stack, tokens, linenum);
@@ -39,12 +47,20 @@ int main(int ac, char **av)
 	free(tokens);
 	free_stack(&stack);
 	fclose(fd);
-	if(status < 0)
+	if (status < 0)
 	{
 		exit(EXIT_FAILURE);
 	}
-	return(0);
+	return (0);
 }
+
+/**
+ * tokenize()- tokenizes buffer
+ * @tokens: the token bucket
+ * @buffer: the buffer we're reading from
+ *
+ * Return: no return
+ */
 
 void tokenize(char **tokens, char *buffer)
 {
@@ -69,6 +85,13 @@ void tokenize(char **tokens, char *buffer)
 	}
 	tokens[i] = NULL;
 }
+
+/**
+ * free_tokens()- frees token array
+ * @tokens: the array of tokens to free
+ *
+ * Return: no return
+ */
 
 void free_tokens(char **tokens)
 {
