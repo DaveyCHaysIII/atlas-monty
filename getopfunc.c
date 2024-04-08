@@ -30,7 +30,7 @@ void (*getopfunc(stack_t **stack, char **args, unsigned int l))(stack_t **stack,
 			return (ops[i].f);
 		i++;	
 	}
-	fprintf(stderr, "Op %s not found at line %u\n", args[0], l);
+	fprintf(stderr, "L%u: unknown instruction %s\n", l, args[0]);
 	free_stack(stack);
 	free_tokens(args);
 	free(args);
